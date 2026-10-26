@@ -48,7 +48,7 @@ p2p-file-sharing-webrtc/
 Python 3.10+ is recommended.
 
 ```bash
-git clone https://github.com/SayanPal12/p2p-file-sharing-webrtc.git
+git clone https://github.com/<your-username>/p2p-file-sharing-webrtc.git
 cd p2p-file-sharing-webrtc
 
 python3 -m venv .venv
