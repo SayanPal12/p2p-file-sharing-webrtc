@@ -1,0 +1,238 @@
+:root {
+  --bg: #0f1115;
+  --card-bg: #171a21;
+  --border: #2a2e37;
+  --text: #e6e8eb;
+  --muted: #8b909c;
+  --accent: #5b8cff;
+  --accent-2: #34d399;
+  --danger: #f87171;
+  --warn: #fbbf24;
+  --radius: 10px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  padding: 24px 16px 64px;
+}
+
+.app {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.app-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 1.6rem;
+  letter-spacing: 0.08em;
+}
+
+.subtitle {
+  color: var(--muted);
+  margin: 6px 0 0;
+  font-size: 0.9rem;
+}
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px;
+  margin-bottom: 16px;
+}
+
+.card h2 {
+  margin: 0 0 14px;
+  font-size: 1rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.room-row {
+  display: flex;
+  gap: 8px;
+}
+
+input[type="text"] {
+  flex: 1;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #0d0f14;
+  color: var(--text);
+  font-size: 0.95rem;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+button {
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  background: var(--accent);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: opacity 0.15s ease;
+}
+
+button:hover { opacity: 0.9; }
+
+button:disabled {
+  background: #3a3f4b;
+  color: var(--muted);
+  cursor: not-allowed;
+}
+
+#random-room-btn {
+  background: #2a2e37;
+  flex: 0 0 auto;
+}
+
+/* Secondary action (demo): visually quieter than the main button. */
+button.secondary {
+  background: #2a2e37;
+  margin-left: 8px;
+}
+
+/* "Interrupted — waiting to resume…" notes under the progress bars. */
+.progress-sub .note-warn { color: var(--warn); }
+
+.status-line {
+  margin: 14px 0 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.status-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.9rem;
+}
+
+.status {
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+}
+
+.status-disconnected { background: rgba(248, 113, 113, 0.15); color: var(--danger); }
+.status-connecting   { background: rgba(251, 191, 36, 0.15); color: var(--warn); }
+.status-connected    { background: rgba(52, 211, 153, 0.15); color: var(--accent-2); }
+
+.file-picker {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.file-label {
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: #2a2e37;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+#file-input { display: none; }
+
+.file-meta {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.progress-block {
+  margin-top: 16px;
+  font-size: 0.85rem;
+}
+
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  color: var(--text);
+}
+
+.progress-bar {
+  width: 100%;
+  height: 10px;
+  background: #0d0f14;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  transition: width 0.15s ease;
+}
+
+.progress-sub {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+#received-files {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.received-file {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #0d0f14;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 0.85rem;
+}
+
+.received-file a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.log {
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.75rem;
+  color: var(--muted);
+  max-height: 180px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  line-height: 1.5;
+}
+
+.log .log-error { color: var(--danger); }
+.log .log-ok { color: var(--accent-2); }

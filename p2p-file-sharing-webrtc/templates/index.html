@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>P2P File Share — WebRTC</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="app">
+
+  <header class="app-header">
+    <h1>P2P FILE SHARE</h1>
+    <p class="subtitle">Direct browser-to-browser transfer over WebRTC</p>
+  </header>
+
+  <!-- STEP 1: Room -->
+  <section class="card" id="room-card">
+    <h2>1. Join a Room</h2>
+    <div class="room-row">
+      <input id="room-input" type="text" placeholder="Enter room ID e.g. ABC123" maxlength="32">
+      <button id="join-btn">Join Room</button>
+      <button id="random-room-btn" title="Generate a random room ID">🎲</button>
+    </div>
+    <p class="status-line">
+      Status: <span id="connection-status" class="status status-disconnected">Disconnected</span>
+    </p>
+  </section>
+
+  <!-- STEP 2: Peer / DataChannel status -->
+  <section class="card" id="peer-card" hidden>
+    <h2>2. Peer Connection</h2>
+    <ul class="status-list">
+      <li>Signaling server: <span id="signal-status" class="status status-disconnected">—</span></li>
+      <li>WebRTC connection: <span id="webrtc-status" class="status status-disconnected">—</span></li>
+      <li>Data channel: <span id="datachannel-status" class="status status-disconnected">—</span></li>
+    </ul>
+  </section>
+
+  <!-- STEP 3: File transfer -->
+  <section class="card" id="file-card" hidden>
+    <h2>3. Send a File</h2>
+
+    <div class="file-picker">
+      <label for="file-input" class="file-label">Choose File</label>
+      <input id="file-input" type="file">
+      <div id="file-meta" class="file-meta"></div>
+    </div>
+
+    <button id="send-btn" disabled>Send File</button>
+    <button id="interrupt-btn" class="secondary" disabled
+            title="Demo: drop the connection on purpose and watch the transfer resume">Simulate Interruption</button>
+
+    <div class="progress-block" id="send-progress-block" hidden>
+      <div class="progress-label">
+        <span>Sending: <span id="send-filename"></span></span>
+        <span id="send-percent">0%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="send-progress-fill"></div></div>
+      <div class="progress-sub">
+        <span id="send-size"></span>
+        <span id="send-speed"></span>
+      </div>
+    </div>
+
+    <div class="progress-block" id="recv-progress-block" hidden>
+      <div class="progress-label">
+        <span>Receiving: <span id="recv-filename"></span></span>
+        <span id="recv-percent">0%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="recv-progress-fill"></div></div>
+      <div class="progress-sub">
+        <span id="recv-size"></span>
+        <span id="recv-speed"></span>
+      </div>
+    </div>
+
+    <div id="received-files"></div>
+  </section>
+
+  <!-- Log -->
+  <section class="card" id="log-card">
+    <h2>Log</h2>
+    <div id="log" class="log"></div>
+  </section>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.min.js"></script>
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
